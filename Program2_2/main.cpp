@@ -11,15 +11,15 @@ GLuint vao[numVAOs];
 
 GLuint createShaderProgram()
 {
-	const char *vshaderSource =
-		"#version 430	\n"
-		"void main()	\n"
-		"{gl_Position = vec4(0.0, 0.0, 0.0, 1.0};";
+	const char* vshaderSource =
+		"#version 430 \n"
+		"void main(void) \n"
+		"{gl_Position = vec4(0.0, 0.0, 0.0, 1.0);}";
 
 	const char* fshaderSource =
-		"#version 430	\n"
-		"out vec4 color;\n"
-		"void main()	\n"
+		"#version 430 \n"
+		"out vec4 color; \n"
+		"void main() \n"
 		"{color = vec4(0.0, 0.0, 1.0, 1.0);}";
 
 	GLuint vShader = glCreateShader(GL_VERTEX_SHADER);
@@ -38,7 +38,7 @@ GLuint createShaderProgram()
 	return vfProgram;
 }
 
-void init(GLFWwindow* window) 
+void init(GLFWwindow* window)
 {
 	renderingProgram = createShaderProgram();
 	glGenVertexArrays(numVAOs, vao);
@@ -48,6 +48,7 @@ void init(GLFWwindow* window)
 void display(GLFWwindow* window, double currentTime)
 {
 	glUseProgram(renderingProgram);
+	glPointSize(30.0f);
 	glDrawArrays(GL_POINTS, 0, 1);
 }
 
@@ -56,7 +57,7 @@ int main()
 	if (!glfwInit()) exit(EXIT_FAILURE);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-	GLFWwindow* window = glfwCreateWindow(600, 600, "Chapter2 - program2", NULL, NULL);
+	GLFWwindow* window = glfwCreateWindow(600, 600, "Chapter2 - program1", nullptr, nullptr);
 	glfwMakeContextCurrent(window);
 	if (glewInit() != GLEW_OK) exit(EXIT_FAILURE);
 	glfwSwapInterval(1);
